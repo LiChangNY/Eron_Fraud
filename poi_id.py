@@ -18,12 +18,10 @@ from sklearn import preprocessing
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
-from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.ensemble import RandomForestClassifier
 
 from sklearn.learning_curve import learning_curve
 from sklearn import cross_validation
@@ -38,9 +36,7 @@ data_dict = pickle.load(open("final_project_dataset.pkl", "r") )
 ### The first feature must be "poi".
 features_list =['poi',
                 'expenses', 
-                'total_stock_value', 
                 'bonus', 
-                'deferred_income', 
                  ]
 
 ### Task 2: Remove outliers
@@ -105,7 +101,6 @@ gnb = GaussianNB()
 svc = LinearSVC()
 kn = KNeighborsClassifier()
 dt =  DecisionTreeClassifier()
-rfc = RandomForestClassifier()
 adb = AdaBoostClassifier()
 
 models = [(lr, 'Logistic'),
@@ -113,61 +108,10 @@ models = [(lr, 'Logistic'),
           (svc, 'Support Vector Classification'),
           (kn, 'K-Neighbors'),
           (dt, 'Decison Tree'),
-          (rfc, 'Random Forest'),
           (adb, 'AdaBoost')]
 
 for clf, name in models :
     test_classifier(clf, my_dataset, features_list, folds = 1000)
-
-#########################################################################
-####################Uncomment to see learning curve######################
-'''
-###Shortlist models
-models_s = [(gnb, 'Naive Bayes'),
-            (adb, "AdaBoost"),
-            (dt, 'Decison Tree'),]
-###Plot learning curves. 
-plt.figure(figsize=(len(models_s)*5,len(models_s)*1.75))
-def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
-                        n_jobs=1, train_sizes=np.linspace(.1, 1.0, 5)):
-    plt.title(title)
-    if ylim is not None:
-        plt.ylim(*ylim)
-    plt.xlabel("Training examples")
-    plt.ylabel("Score")
-    train_sizes, train_scores, test_scores = learning_curve(
-        estimator, X, y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes)
-    train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
-    test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
-    plt.grid()
-
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
-                     train_scores_mean + train_scores_std, alpha=0.1,
-                     color="r")
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
-                     test_scores_mean + test_scores_std, alpha=0.1,
-                     color="g")
-    plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
-             label="Training score")
-    plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
-             label="Cross-validation score")
-
-    plt.legend(loc="best")
-    plt.tight_layout()
-    return plt
-
-cv = StratifiedKFold(labels, n_folds=3)
-
-j = 0
-for clf, name in models_s:
-    title = "Learning Curves (%s)" %name
-    ax = plt.subplot2grid((1,len(models_s)), (0, j))
-    plot_learning_curve(clf, title, features, labels, (0.5, 1.01), cv = cv)
-    j +=1
-'''
-#########################################################################
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall 
 ### using our testing script.
@@ -192,7 +136,7 @@ for i in range(len(n_estimators)):
 '''
 #########################################################################
 ### best parameters
-clf = AdaBoostClassifier(n_estimators = 50, learning_rate = 1.0)
+clf = AdaBoostClassifier(n_estimators = 250, learning_rate = 0.1)
 test_classifier(clf, my_dataset, features_list, folds = 1000)
 
 ### Dump your classifier, dataset, and features_list so 

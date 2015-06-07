@@ -3,10 +3,6 @@ S'poi'
 p1
 aS'expenses'
 p2
-aS'total_stock_value'
-p3
 aS'bonus'
-p4
-aS'deferred_income'
-p5
+p3
 a.
