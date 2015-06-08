@@ -1,6 +1,5 @@
-# Eron_Fraud
-Final project for Udacity Intro to Machine Learning. Identifying person of interest for Enron scandal. 
-
+# Predicting Fraud at Enron: Who is Person of Interest?
+Final project for Udacity Intro to Machine Learning. It used AdaBoost model to predict person of interest during the fall of Enron. 
 
 --------------------------------------------------------------------------------------------------------
 
