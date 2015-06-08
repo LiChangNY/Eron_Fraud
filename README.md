@@ -1,6 +1,4 @@
 # Predicting Fraud at Enron: Who is Person of Interest?
-Final project for Udacity Intro to Machine Learning. It used AdaBoost model to predict person of interest during the fall of Enron. 
-
 --------------------------------------------------------------------------------------------------------
 
 [Project report](https://github.com/LiChangNY/Eron_Fraud/blob/master/Project%20report.ipynb): IPython Notebook documenting the entire process. It includes more  development scripts and work-in-progress output (charts and tables) than `poi_id.py`
