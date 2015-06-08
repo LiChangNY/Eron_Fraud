@@ -1,5 +1,4 @@
 # Predicting Fraud at Enron: Who is Person of Interest?
---------------------------------------------------------------------------------------------------------
 
 [Project report](https://github.com/LiChangNY/Eron_Fraud/blob/master/Project%20report.ipynb): IPython Notebook documenting the entire process. It includes more  development scripts and work-in-progress output (charts and tables) than `poi_id.py`
 
